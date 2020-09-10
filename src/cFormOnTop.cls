@@ -7,6 +7,9 @@ Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = False
 Attribute VB_Exposed = False
+Attribute VB_Description = "Keep a UserForm on top (from <https://jkp-ads.com/Articles/keepuserformontop02.asp>)."
+
+'@ModuleDescription("Keep a UserForm on top (from <https://jkp-ads.com/Articles/keepuserformontop02.asp>).")
 
 Option Explicit
 
