@@ -26,6 +26,7 @@ Attribute XLApp.VB_VarHelpID = -1
     #Else
         Private Declare PtrSafe Function SetWindowLongA Lib "user32" (ByVal hwnd As LongPtr, ByVal nIndex As Long, ByVal dwNewLong As LongPtr) As LongPtr
     #End If
+    Private Declare PtrSafe Function GetForegroundWindow Lib "user32" () As LongPtr
     Private Declare PtrSafe Function SetForegroundWindow Lib "user32" (ByVal hwnd As LongPtr) As Long
 #Else
     Dim mXLHwnd As Long    'Excel's window handle
@@ -33,6 +34,7 @@ Attribute XLApp.VB_VarHelpID = -1
     Dim FirstWindow As Long
     Private Declare Function FindWindowA Lib "user32" (ByVal lpClassName As String, ByVal lpWindowName As String) As Long
     Private Declare Function SetWindowLongA Lib "user32" (ByVal hwnd As Long, ByVal nIndex As Long, ByVal dwNewLong As Long) As Long
+    Private Declare PtrSafe Function GetForegroundWindow Lib "user32" () As Long
     Private Declare Function SetForegroundWindow Lib "user32" (ByVal hwnd As Long) As Long
 #End If
 
@@ -53,9 +55,15 @@ End Sub
 
 Private Sub XLApp_WindowActivate(ByVal Wb As Workbook, ByVal Wn As Window)
     If Val(Application.Version) >= 15 And mhwndForm <> 0 Then  'Basear o form na janela ativa do Excel.
+        Dim CurrentWindowHandle As LongPtr
+        CurrentWindowHandle = GetForegroundWindow
+        
         mXLHwnd = Application.hwnd    'Always get because in Excel 15 SDI each wb has its window with different handle.
+        
         SetWindowLongA mhwndForm, GWL_HWNDPARENT, mXLHwnd
+        
         SetForegroundWindow mhwndForm
+        SetForegroundWindow CurrentWindowHandle
     End If
 End Sub
 
