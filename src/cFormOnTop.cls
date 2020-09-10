@@ -18,9 +18,9 @@ Private WithEvents XLApp As Excel.Application
 Attribute XLApp.VB_VarHelpID = -1
 
 #If VBA7 Then
-    Dim mXLHwnd As LongPtr    'Excel's window handle
-    Dim mhwndForm As LongPtr  'The userform's window handle
-    Dim FirstWindow As LongPtr
+    Private mXLHwnd As LongPtr    'Excel's window handle
+    Private mhwndForm As LongPtr  'The userform's window handle
+    Private FirstWindow As LongPtr
     Private Declare PtrSafe Function FindWindowA Lib "user32" (ByVal lpClassName As String, ByVal lpWindowName As String) As LongPtr
     #If Win64 Then
         Private Declare PtrSafe Function GetWindowLongA Lib "user32" Alias "GetWindowLongPtrA" (ByVal hwnd As LongPtr, ByVal nIndex As Long) As LongPtr
@@ -32,9 +32,9 @@ Attribute XLApp.VB_VarHelpID = -1
     Private Declare PtrSafe Function GetForegroundWindow Lib "user32" () As LongPtr
     Private Declare PtrSafe Function SetForegroundWindow Lib "user32" (ByVal hwnd As LongPtr) As Long
 #Else
-    Dim mXLHwnd As Long    'Excel's window handle
-    Dim mhwndForm As Long  'The userform's window handle
-    Dim FirstWindow As Long
+    Private mXLHwnd As Long    'Excel's window handle
+    Private mhwndForm As Long  'The userform's window handle
+    Private FirstWindow As Long
     Private Declare Function FindWindowA Lib "user32" (ByVal lpClassName As String, ByVal lpWindowName As String) As Long
     Private Declare Function GetWindowLongA Lib "user32" (ByVal hwnd As Long, ByVal nIndex As Long) As Long
     Private Declare Function SetWindowLongA Lib "user32" (ByVal hwnd As Long, ByVal nIndex As Long, ByVal dwNewLong As Long) As Long
