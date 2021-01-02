@@ -58,7 +58,7 @@ Private Sub Class_Terminate()
     Set moTheUserform = Nothing
 End Sub
 
-Private Sub XLApp_WindowActivate(ByVal Wb As Workbook, ByVal Wn As Window)
+Private Sub XLApp_WindowActivate(ByVal wb As Workbook, ByVal wn As Window)
     If Val(Application.Version) >= 15 And mhwndForm <> 0 Then  'Base the form on the active Excel window.
         Dim CurrentWindowHandle As LongPtr
         CurrentWindowHandle = GetForegroundWindow
@@ -72,11 +72,11 @@ Private Sub XLApp_WindowActivate(ByVal Wb As Workbook, ByVal Wn As Window)
     End If
 End Sub
 
-Private Sub XLApp_WindowResize(ByVal Wb As Workbook, ByVal Wn As Window)
+Private Sub XLApp_WindowResize(ByVal wb As Workbook, ByVal wn As Window)
     If Not moTheUserform.Visible Then moTheUserform.Show vbModeless
 End Sub
 
-Private Sub XLApp_WindowDeactivate(ByVal Wb As Workbook, ByVal Wn As Excel.Window)
+Private Sub XLApp_WindowDeactivate(ByVal wb As Workbook, ByVal wn As Excel.Window)
     SetWindowLongA mhwndForm, GWL_HWNDPARENT, FirstWindow
 End Sub
 
