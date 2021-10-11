@@ -1,0 +1,10 @@
+﻿
+Option Explicit
+
+Private Sub cmdNormal_Click()
+    ShowForm_Normal
+End Sub
+
+Private Sub cmdOnTop_Click()
+    ShowForm_OnTop
+End Sub
