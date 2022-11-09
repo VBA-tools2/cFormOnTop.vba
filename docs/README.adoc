@@ -1,0 +1,127 @@
+
+= cFormOnTop.vba
+:experimental:
+:icons:         // not sure if this is needed
+:demodir: ../demo
+:sourcedir: ../src
+:uri-commit-messages: https://www.conventionalcommits.org
+:uri-GitHub-FirstContribution: https://github.com/firstcontributions/first-contributions
+:uri-jkp-user-form-on-top: https://jkp-ads.com/articles/keepuserformontop02.asp
+:uri-license: https://choosealicense.com/licenses/mit/
+:uri-rubberduck: https://rubberduckvba.com/
+:uri-SDI-Docs: https://docs.microsoft.com/en-us/office/vba/excel/concepts/programming-for-the-single-document-interface-in-excel
+:uri-UnitTests: https://en.wikipedia.org/wiki/Unit_testing
+// show the corresponding icons on GitHub, because otherwise "just" the text will be shown
+ifdef::env-github[]
+:caution-caption: :fire:
+:important-caption: :exclamation:
+:note-caption: :information_source:
+:tip-caption: :bulb:
+:warning-caption: :warning:
+endif::[]
+
+Office VBA class to keep UserForms on top of SDI Windows.
+
+This is essentially a republish of Jan Karel Pieterse's article {uri-jkp-user-form-on-top}.
+So all credits go to him!
+
+The main reason for this repository is to bundle all improvements at one point.
+Otherwise one has at least to dig through all the comments below the article to find them.
+
+== Features
+
+* Keep a UserForm on top of SDI Windows{empty}footnote:[
+SDI stands for "Single Document Interface" which is the new standard since Excel 2013.
+For more information see the {uri-SDI-Docs}[Microsoft Docs].]
+
+== Prerequisites / Dependencies
+
+Since this is an Office class you obviously need Microsoft Office (single components of that bundle like Excel).
+
+== How to install / Getting started
+
+Add the file(s) from the link:{sourcedir}[src] folder to your project.
+Yes, it's that simple.
+
+._If you need some more advice on how to do that, expand me._
+[%collapsible]
+====
+. Open Microsoft Excel.
+. Open the Visual Basic Editor (VBE) (kbd:[Alt+F11]).
+. Add the file(s) in the link:{sourcedir}[src] folder to your VBA project.
+** With {uri-rubberduck}[Rubberduck]:
+.. Right-click on the project to which you want to add the file(s) in the "`Code Explorer`" (to show it press kbd:[Ctrl+R]) and click on menu:Add[Existing Files...].
+.. Select all files in the link:{sourcedir}[src] folder and click on btn:[Open].
+** Without Rubberduck:
+.. Select all files in the link:{sourcedir}[src] folder in Windows File Explorer.
+.. Drag-and-drop them to the corresponding project in VBE's "`Project Explorer`". +
+   (To show it press kbd:[Ctrl+R].
+   Hit it twice if the Code Explorer shows up first.)
+// BUG: "project name" can't be put in normal angle brackets, because the closing bracket would be interpreted as menu delimiter. I couldn't find a way how to "escape" that (i.e. a backslash didn't work). Thus, single guillemets are used.
+. Check, if there are obvious errors by compiling the project (menu:Debug[Compile ‹project name›]).
+. Save the file/project.
+.. Be sure that the file/project you want to save is "`active`" in the VBE by checking, if its name is shown in VBE's title bar. +
+   (If it's not, open a (class) module of the corresponding project (and close it again).)
+.. Press the "`Save`" button (the disc symbol similar to 💾) in VBE's toolbar.
+.. Check that the file (really) was saved by having a look at the "`last modified date`" of the (project) file in the Windows File Explorer.
+====
+
+== Usage / Show it in action
+
+Add
+
+[source,vba]
+----
+Private mclsFormOnTop As cFormOnTop
+
+Private Sub UserForm_Initialize()
+    Set mclsFormOnTop = New cFormOnTop
+    Set mclsFormOnTop.TheUserform = Me
+    mclsFormOnTop.InitializeMe
+End Sub
+----
+
+to your UserForm code. (This is the given example from the {uri-jkp-user-form-on-top}[original article].)
+
+If you want to see it in action, you can also have a look at the example(s) given in the link:{demodir}[demo] folder.
+
+== Running Tests
+
+Unfortunately we don't know how to create automated tests/unit tests for this project.
+If you have an idea, we would love to see it!
+Please add an issue or – even better – a pull request (see <<#contributing>>).
+
+But of course one can manually test it.
+Please have a look at the link:{demodir}[demo] folder.
+
+== Used By
+
+This project is used by (at least) these projects:
+
+* https://github.com/VBA-tools2/DiffWorksheets.vba[]
+
+If you know more, we will be happy to add them here.
+
+== Known issues and limitations
+
+None that we are aware of.
+
+[#contributing]
+== Contributing
+
+All contributions are highly welcome!!
+
+If you are new to git/GitHub, please have a look at {uri-GitHub-FirstContribution} where you will find a lot of useful information for beginners.
+
+We recently were pointed to {uri-commit-messages} which sounds very promising.
+We will use them from now on too (and hopefully don't forget it in a hurry).
+
+== FAQ
+
+[qanda]
+What are the `+'@...+` comments good for in the code?::
+You should really have a look at the awesome {uri-rubberduck}[Rubberduck] project!
+
+== License
+
+{uri-license}[MIT]

@@ -1,0 +1,24 @@
+// cSpell Settings
+{
+    // ignoreWords - list of words that should be ignored
+    "ignoreWords": [
+        "demodir",
+        "ifdef",
+        "hwnd",
+        "HWNDPARENT",
+        "mcls",
+        "mhwnd",
+        "modeless",
+        "qanda",
+        "sourcedir",
+        "userform",
+        "VBE"
+    ],
+    // words - list of words to be always considered correct
+    "words": [
+        "guillemets",
+        "Karel",
+        "Pieterse",
+        "rubberduck"
+    ]
+}
